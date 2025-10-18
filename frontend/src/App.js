@@ -26,6 +26,7 @@ import AdminDashboardPage from './pages/Admin/AdminDashboardPage';
 import AdminResourcesPage from './pages/Admin/AdminResourcesPage';
 import AdminUsersPage from './pages/Admin/AdminUsersPage';
 import AdminEventsPage from './pages/Admin/AdminEventsPage';
+import AdminRequestsPage from './pages/Admin/AdminRequestsPage';
 
 // Components
 import Navbar from './components/Layout/Navbar';
@@ -106,6 +107,7 @@ function AppRoutes() {
           <Route path="events" element={<AdminEventsPage />} />
           <Route path="users" element={<AdminUsersPage />} />
           <Route path="resources" element={<AdminResourcesPage />} />
+          <Route path="requests" element={<AdminRequestsPage />} />
           {/* Add more admin routes here as needed */}
         </Route>
         

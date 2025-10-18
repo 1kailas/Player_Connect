@@ -162,40 +162,42 @@ const MapPicker = ({
         <div className="mb-4">
           <div className="flex gap-2 mb-2">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+              </div>
               <input
                 type="text"
                 placeholder="Search location (e.g., Mumbai, India or Wankhede Stadium)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 transition-colors"
               />
             </div>
             <button
               onClick={searchLocation}
               disabled={isSearching}
-              className="px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
               {isSearching ? 'Searching...' : 'Search'}
             </button>
           </div>
           
           {/* Use My Location Button */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
             <button
               onClick={getCurrentLocation}
               disabled={isLoadingLocation}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               title="Use my current location"
             >
               <Navigation className="h-4 w-4" />
-              {isLoadingLocation ? 'Getting Location...' : 'Use My Location'}
+              <span>{isLoadingLocation ? 'Getting Location...' : 'Use My Location'}</span>
             </button>
             {enablePicker && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center">
-                <MapPin className="h-4 w-4 mr-1" />
-                Or click on the map to select a location
+              <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+                <MapPin className="h-4 w-4 flex-shrink-0" />
+                <span>Or click on the map to select a location</span>
               </p>
             )}
           </div>
