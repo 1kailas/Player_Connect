@@ -175,6 +175,20 @@
     </dependencies>
 
     <build>
+        <!-- Specify source directories -->
+        <sourceDirectory>backend/main/java</sourceDirectory>
+        <testSourceDirectory>backend/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>backend/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>backend/test/resources</directory>
+            </testResource>
+        </testResources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
