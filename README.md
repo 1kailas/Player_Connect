@@ -101,7 +101,39 @@ A comprehensive, enterprise-grade sports management and ranking system built wit
 - **Build Tool**: Maven
 - **Validation**: Jakarta Validation
 
-## 📋 Prerequisites
+## � Project Structure
+
+```
+sports-ranking-platform/
+├── backend/                           # Backend Java source code
+│   └── main/
+│       ├── java/com/sports/          # Java packages
+│       │   ├── config/               # Configuration classes
+│       │   ├── controller/           # REST controllers
+│       │   ├── dto/                  # Data Transfer Objects
+│       │   ├── model/                # MongoDB models
+│       │   │   ├── entity/           # Domain entities
+│       │   │   └── enums/            # Enumerations
+│       │   ├── repository/           # MongoDB repositories
+│       │   ├── security/             # Security configuration
+│       │   ├── service/              # Business logic
+│       │   └── exception/            # Exception handlers
+│       └── resources/                # Application properties
+├── frontend/                          # React frontend application
+│   ├── public/                       # Static assets
+│   └── src/
+│       ├── components/               # Reusable React components
+│       ├── pages/                    # Page components
+│       ├── contexts/                 # React Context providers
+│       ├── services/                 # API services
+│       └── App.js                    # Main application component
+├── .env                              # Backend environment variables (gitignored)
+├── .env.example                      # Backend environment template
+├── pom.xml                           # Maven configuration
+└── run.sh                            # Startup script
+```
+
+## �📋 Prerequisites
 
 - Java 21 or higher
 - Maven 3.9+
@@ -120,7 +152,7 @@ cd PBL
 
 1. Create a MongoDB Atlas account at https://www.mongodb.com/cloud/atlas
 2. Create a new cluster and get your connection string
-3. Update `src/main/resources/application.properties`:
+3. Update `backend/main/resources/application.properties`:
 
 ```properties
 spring.data.mongodb.uri=mongodb+srv://username:password@cluster.mongodb.net/sports_ranking
