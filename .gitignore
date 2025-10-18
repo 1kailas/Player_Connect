@@ -1,0 +1,104 @@
+# Compiled class files
+*.class
+target/
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+logs/
+backend.log
+frontend.log
+
+# Package Files
+*.nar
+
+# Maven
+.mvn/
+mvn.cmd
+mvnw
+mvnw.cmd
+
+# IDE Files
+.idea/
+*.iml
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Application Properties (contains sensitive data)
+application-prod.properties
+application-local.properties
+
+# Environment files (CONTAINS SENSITIVE DATA - NEVER COMMIT!)
+.env
+.env.local
+.env.production
+.env.development
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/.env.development
+
+# Database
+*.db
+*.sqlite
+
+# Temp files
+temp/
+tmp/
+
+# Build artifacts
+dist/
+build/
+frontend/build/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Node modules (if frontend added)
+node_modules/
+frontend/node_modules/
+npm-debug.log
+package-lock.json
+frontend/package-lock.json
+
+# Application specific
+uploads/
+storage/
+
+# Temporary documentation files
+*_FIX_*.md
+*_SUMMARY.md
+*_IMPLEMENTATION.md
+*_GUIDE.md
+*_FIXES*.md
+*_FEATURES*.md
+ADMIN_*.md
+COMPLETE_*.md
+COMPREHENSIVE_*.md
+ENHANCED_*.md
+ERROR_*.md
+GEOLOCATION_*.md
+MAP_*.md
+MASSIVE_*.md
+PAGES_*.md
+TESTING_*.md
+VULNERABILITY_*.md
+
+# Debug and test scripts
+debug-*.sh
+verify-*.sh
+cleanup-*.sh
+test-*.sh

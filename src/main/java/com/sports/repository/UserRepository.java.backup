@@ -1,0 +1,42 @@
+package com.sports.repository;
+
+import com.sports.model.entity.User;
+import com.sports.model.enums.UserRole;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.UUID;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, UUID> {
+    
+    Optional<User> findByUsername(String username);
+    
+    Optional<User> findByEmail(String email);
+    
+    boolean existsByUsername(String username);
+    
+    boolean existsByEmail(String email);
+    
+    List<User> findByRolesContaining(UserRole role);
+    
+    Page<User> findByCountryAndCity(String country, String city, Pageable pageable);
+    
+    @Query("SELECT u FROM User u WHERE u.totalPoints > :minPoints ORDER BY u.totalPoints DESC")
+    List<User> findTopUsersByPoints(int minPoints, Pageable pageable);
+    
+    List<User> findByEmailVerifiedFalse();
+    
+    @Query("SELECT u FROM User u WHERE LOWER(u.firstName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+           "OR LOWER(u.lastName) LIKE LOWER(CONCAT('%', :search, '%')) " +
+           "OR LOWER(u.username) LIKE LOWER(CONCAT('%', :search, '%'))")
+    Page<User> searchUsers(String search, Pageable pageable);
+    
+    List<User> findByUsernameContainingIgnoreCaseOrFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(
+            String username, String firstName, String lastName);
+}

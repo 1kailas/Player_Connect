@@ -1,0 +1,97 @@
+package com.sports.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sports.model.enums.UserRole;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * User Entity - Represents all users in the system
+ */
+@Entity
+@Table(name = "users", indexes = {
+    @Index(name = "idx_email", columnList = "email"),
+    @Index(name = "idx_username", columnList = "username")
+})
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User extends BaseEntity {
+    
+    @NotBlank
+    @Column(unique = true)
+    private String username;
+    
+    @NotBlank
+    @Email
+    @Column(unique = true)
+    private String email;
+    
+    @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+    
+    private String firstName;
+    
+    private String lastName;
+    
+    @Column(unique = true)
+    private String phoneNumber;
+    
+    private LocalDate dateOfBirth;
+    
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    @Builder.Default
+    private Set<UserRole> roles = new HashSet<>();
+    
+    private String profilePictureUrl;
+    
+    private String bio;
+    
+    private String country;
+    
+    private String city;
+    
+    @Builder.Default
+    private Boolean emailVerified = false;
+    
+    @Builder.Default
+    private Boolean accountLocked = false;
+    
+    @Builder.Default
+    private Boolean isActive = true;
+    
+    @Builder.Default
+    private Integer totalPoints = 0;
+    
+    // Social media links
+    private String facebookUrl;
+    
+    private String twitterUrl;
+    
+    private String instagramUrl;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<PlayerProfile> playerProfiles;
+    
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Event> organizedEvents;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Notification> notifications;
+}
