@@ -4,7 +4,7 @@ import {
   Users, 
   Calendar, 
   Trophy, 
-  TrendingUp, 
+  // TrendingUp, 
   Activity,
   DollarSign,
   MapPin,
@@ -12,7 +12,7 @@ import {
   ArrowUpRight,
   ArrowDownRight
 } from 'lucide-react';
-import { eventsAPI, adminAPI, eventRequestsAPI } from '../../services/api';
+import { eventsAPI, adminAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
 const AdminDashboardPage = () => {
@@ -84,18 +84,7 @@ const AdminDashboardPage = () => {
     }
   };
 
-  const formatTimeAgo = (timestamp) => {
-    if (!timestamp) return 'Just now';
-    
-    const date = new Date(timestamp);
-    const now = new Date();
-    const seconds = Math.floor((now - date) / 1000);
-    
-    if (seconds < 60) return 'Just now';
-    if (seconds < 3600) return `${Math.floor(seconds / 60)} mins ago`;
-    if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
-    return `${Math.floor(seconds / 86400)} days ago`;
-  };
+  // Removed unused formatTimeAgo function
 
   const statCards = [
     {

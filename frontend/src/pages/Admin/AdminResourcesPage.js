@@ -38,28 +38,21 @@ const AdminResourcesPage = () => {
   const types = ['PDF', 'VIDEO', 'ARTICLE', 'GUIDE'];
   const languages = ['English', 'Hindi', 'Telugu', 'Tamil', 'Bengali', 'Marathi', 'Punjabi', 'Gujarati'];
 
-  useEffect(() => {
-    fetchResources();
-  }, [selectedCategory]);
-
-  const fetchResources = async () => {
+  const fetchResources = React.useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (selectedCategory !== 'ALL') params.append('category', selectedCategory);
       params.append('page', '0');
       params.append('size', '100');
-      
       const url = selectedCategory === 'ALL' 
         ? `/api/resources?${params.toString()}`
         : `/api/resources/filter?${params.toString()}`;
-
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
-
       if (response.ok) {
         const data = await response.json();
         setResources(data.data?.content || []);
@@ -72,7 +65,13 @@ const AdminResourcesPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchResources();
+  }, [fetchResources]);
+
+  // Removed duplicate fetchResources definition
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

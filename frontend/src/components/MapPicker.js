@@ -62,6 +62,7 @@ const MapPicker = ({
     } else if (initialLat !== 20.5937 || initialLng !== 78.9629) {
       setCenter([initialLat, initialLng]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLocation, initialLat, initialLng]);
 
   // Get user's current location
@@ -110,7 +111,7 @@ const MapPicker = ({
         maximumAge: 0
       }
     );
-  }, [onLocationSelect]);
+  }, [onLocationSelect, hasTriedGeolocation]);
 
   // Try to get user's current location on mount
   useEffect(() => {
@@ -118,6 +119,7 @@ const MapPicker = ({
       setHasTriedGeolocation(true);
       getCurrentLocation();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasTriedGeolocation, selectedLocation, enablePicker, getCurrentLocation]);
 
   // Search location using Nominatim (OpenStreetMap)
@@ -156,47 +158,51 @@ const MapPicker = ({
   };
 
   return (
-    <div className="w-full">
+  <div className="w-full" role="region" aria-label="Map Picker">
       {/* Search Bar */}
       {enablePicker && (
         <div className="mb-4">
-          <div className="flex gap-2 mb-2">
+          <div className="flex flex-col sm:flex-row gap-2 mb-2 items-stretch sm:items-center">
             <div className="relative flex-1">
               <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                <Search className="h-5 w-5 text-gray-400 dark:text-gray-500" aria-label="Search Icon" />
               </div>
               <input
                 type="text"
                 placeholder="Search location (e.g., Mumbai, India or Wankhede Stadium)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 className="w-full pl-10 pr-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 transition-colors"
+                aria-label="Search location"
               />
             </div>
             <button
+              type="button"
               onClick={searchLocation}
               disabled={isSearching}
               className="px-6 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              aria-label="Search"
             >
               {isSearching ? 'Searching...' : 'Search'}
             </button>
           </div>
-          
           {/* Use My Location Button */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
             <button
+              type="button"
               onClick={getCurrentLocation}
               disabled={isLoadingLocation}
               className="flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               title="Use my current location"
+              aria-label="Use my current location"
             >
-              <Navigation className="h-4 w-4" />
+              <Navigation className="h-4 w-4" aria-label="Navigation Icon" />
               <span>{isLoadingLocation ? 'Getting Location...' : 'Use My Location'}</span>
             </button>
             {enablePicker && (
               <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
-                <MapPin className="h-4 w-4 flex-shrink-0" />
+                <MapPin className="h-4 w-4 flex-shrink-0" aria-label="Map Pin Icon" />
                 <span>Or click on the map to select a location</span>
               </p>
             )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Users, Search, Mail, Shield, Ban, CheckCircle, Trash2 } from 'lucide-react';
+import { Users, Search, Shield, Ban, CheckCircle, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { adminAPI } from '../../services/api';
 
@@ -43,7 +43,7 @@ const AdminUsersPage = () => {
     
     if (window.confirm(`Are you sure you want to ${action} this user?`)) {
       try {
-        const response = await adminAPI.toggleUserBan(userId, ban);
+        await adminAPI.toggleUserBan(userId, ban);
         toast.success(`User ${action}ned successfully`);
         fetchUsers();
       } catch (error) {

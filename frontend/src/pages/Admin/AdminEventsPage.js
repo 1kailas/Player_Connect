@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Plus, Search, Edit, Trash2, Eye, MapPin, Users, DollarSign } from 'lucide-react';
+import { Calendar, Plus, Search, Edit, Trash2, Eye, Users, DollarSign } from 'lucide-react';
 import { eventsAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 const AdminEventsPage = () => {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // Removed unused loading state
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [selectedSport, setSelectedSport] = useState('ALL');
@@ -19,15 +19,12 @@ const AdminEventsPage = () => {
   }, []);
 
   const fetchEvents = async () => {
-    setLoading(true);
     try {
       const response = await eventsAPI.getAll({ page: 0, size: 100 });
       setEvents(response.data?.data?.content || []);
     } catch (error) {
       console.error('Failed to fetch events:', error);
       toast.error('Failed to load events');
-    } finally {
-      setLoading(false);
     }
   };
 
