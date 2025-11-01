@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Download, Eye, BookOpen, Video, FileText, Globe, Sparkles, TrendingUp, Book, Award } from 'lucide-react';
+import { Download, Eye, BookOpen, Video, FileText, Globe, Sparkles, TrendingUp, Book, Award } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { resourcesAPI } from '../services/api';
+import SearchInput from '../components/common/SearchInput';
 
 const ResourcesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -137,14 +138,11 @@ const ResourcesPage = () => {
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search resources..."
+            <div className="flex-1">
+              <SearchInput
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+                placeholder="Search resources..."
               />
             </div>
 
@@ -152,7 +150,7 @@ const ResourcesPage = () => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+              className="px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white transition-all"
             >
               {categories.map((category) => (
                 <option key={category} value={category}>
@@ -165,7 +163,7 @@ const ResourcesPage = () => {
             <select
               value={selectedLanguage}
               onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+              className="px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white transition-all"
             >
               {languages.map((language) => (
                 <option key={language} value={language}>

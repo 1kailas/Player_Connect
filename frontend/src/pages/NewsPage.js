@@ -107,7 +107,7 @@ const NewsPage = () => {
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -117,7 +117,7 @@ const NewsPage = () => {
                 Category
               </label>
               <select
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >

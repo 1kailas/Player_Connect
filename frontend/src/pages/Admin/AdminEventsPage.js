@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Plus, Search, Edit, Trash2, Eye, Users, DollarSign } from 'lucide-react';
+import { Calendar, Plus, Edit, Trash2, Eye, Users, DollarSign } from 'lucide-react';
 import { eventsAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import SearchInput from '../../components/common/SearchInput';
 
 const AdminEventsPage = () => {
   const [events, setEvents] = useState([]);
@@ -130,20 +131,17 @@ const AdminEventsPage = () => {
       {/* Search and Filter */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search events..."
+          <div className="flex-1">
+            <SearchInput
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+              placeholder="Search events..."
             />
           </div>
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+            className="px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white transition-all"
           >
             {statuses.map(status => (
               <option key={status} value={status}>{status}</option>
@@ -152,7 +150,7 @@ const AdminEventsPage = () => {
           <select
             value={selectedSport}
             onChange={(e) => setSelectedSport(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+            className="px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white transition-all"
           >
             {sports.map(sport => (
               <option key={sport} value={sport}>{sport}</option>

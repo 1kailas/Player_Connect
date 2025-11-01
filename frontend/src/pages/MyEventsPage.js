@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Calendar, MapPin, Trophy, Users, DollarSign, Edit, Trash2, Eye, Plus, Filter, Search } from 'lucide-react';
+import { Calendar, MapPin, Trophy, Users, DollarSign, Edit, Trash2, Eye, Plus, Filter } from 'lucide-react';
 import { eventsAPI } from '../services/api';
 import toast from 'react-hot-toast';
+import SearchInput from '../components/common/SearchInput';
 
 const MyEventsPage = () => {
   const { user } = useAuth();
@@ -127,19 +128,16 @@ const MyEventsPage = () => {
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search events..."
-                className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            <div>
+              <SearchInput
                 value={filters.search}
                 onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                placeholder="Search events..."
               />
             </div>
             <div>
               <select
-                className="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white"
+                className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white transition-all"
                 value={filters.sportType}
                 onChange={(e) => setFilters({ ...filters, sportType: e.target.value })}
               >
@@ -151,7 +149,7 @@ const MyEventsPage = () => {
             </div>
             <div>
               <select
-                className="w-full px-4 py-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white"
+                className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white transition-all"
                 value={filters.status}
                 onChange={(e) => setFilters({ ...filters, status: e.target.value })}
               >

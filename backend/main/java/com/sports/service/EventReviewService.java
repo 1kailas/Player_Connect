@@ -22,7 +22,6 @@ import java.util.Map;
 public class EventReviewService {
     
     private final EventReviewRepository eventReviewRepository;
-    private final NotificationService notificationService;
     
     @Transactional
     public EventReview createReview(String eventId, EventReview review, User user) {

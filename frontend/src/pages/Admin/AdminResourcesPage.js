@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Plus, 
-  Search, 
   Download, 
   Eye, 
   Edit, 
@@ -14,6 +13,7 @@ import {
   Loader
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import SearchInput from '../../components/common/SearchInput';
 
 const AdminResourcesPage = () => {
   const [resources, setResources] = useState([]);
@@ -257,14 +257,11 @@ Generate an engaging, practical description that emphasizes accessibility and re
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
         <div className="flex flex-col md:flex-row gap-4">
           {/* Search */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search resources..."
+          <div className="flex-1">
+            <SearchInput
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+              placeholder="Search resources..."
             />
           </div>
 
@@ -272,7 +269,7 @@ Generate an engaging, practical description that emphasizes accessibility and re
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white"
+            className="px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-900 dark:text-white transition-all"
           >
             {categories.map(category => (
               <option key={category} value={category}>

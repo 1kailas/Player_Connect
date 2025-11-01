@@ -4,7 +4,6 @@ import com.sports.dto.ApiResponse;
 import com.sports.model.entity.User;
 import com.sports.model.enums.UserRole;
 import com.sports.service.AdminService;
-import com.sports.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

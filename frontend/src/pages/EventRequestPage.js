@@ -163,7 +163,7 @@ const EventRequestPage = () => {
                     value={formData.eventName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                     placeholder="Enter event name"
                   />
                 </div>
@@ -177,7 +177,7 @@ const EventRequestPage = () => {
                     value={formData.sportType}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                   >
                     <option value="">Select sport</option>
                     <option value="CRICKET">Cricket</option>
@@ -201,7 +201,7 @@ const EventRequestPage = () => {
                     value={formData.proposedStartDate}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                   />
                 </div>
 
@@ -215,7 +215,7 @@ const EventRequestPage = () => {
                     value={formData.proposedEndDate}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                   />
                 </div>
 
@@ -229,7 +229,7 @@ const EventRequestPage = () => {
                     value={formData.proposedVenue}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                     placeholder="Enter venue"
                   />
                 </div>
@@ -243,7 +243,7 @@ const EventRequestPage = () => {
                     name="expectedParticipants"
                     value={formData.expectedParticipants}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                     placeholder="Number of participants"
                   />
                 </div>
@@ -259,7 +259,7 @@ const EventRequestPage = () => {
                   onChange={handleInputChange}
                   required
                   rows="4"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                   placeholder="Describe your event"
                 />
               </div>
@@ -273,7 +273,7 @@ const EventRequestPage = () => {
                   value={formData.additionalDetails}
                   onChange={handleInputChange}
                   rows="3"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-900 dark:text-white dark:placeholder-gray-400"
                   placeholder="Any additional information"
                 />
               </div>
