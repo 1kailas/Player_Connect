@@ -46,7 +46,6 @@ public class EventReviewService {
         
         EventReview saved = eventReviewRepository.save(review);
         
-        // TODO: Notify event organizer
         return saved;
     }
     
