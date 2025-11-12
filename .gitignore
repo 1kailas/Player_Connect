@@ -1,104 +1,402 @@
+# ============================================
+# Sports Ranking Platform - Git Ignore
+# Professional Configuration
+# ============================================
+
+# ============================================
+# JAVA / MAVEN
+# ============================================
+
 # Compiled class files
 *.class
-target/
+
+# Package Files
 *.jar
 *.war
 *.ear
-
-# Log files
-*.log
-logs/
-backend.log
-frontend.log
-
-# Package Files
 *.nar
 
 # Maven
+target/
 .mvn/
 mvn.cmd
 mvnw
 mvnw.cmd
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# IDE Files
+# ============================================
+# NODE / NPM / FRONTEND
+# ============================================
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+frontend/coverage/
+.nyc_output/
+
+# Production build
+frontend/build/
+frontend/dist/
+build/
+dist/
+
+# Misc
+.DS_Store
+frontend/.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package lock files (optional - uncomment if needed)
+# package-lock.json
+# frontend/package-lock.json
+# yarn.lock
+
+# ============================================
+# ENVIRONMENT VARIABLES (SENSITIVE!)
+# ============================================
+
+# NEVER commit these files!
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Application properties with sensitive data
+*-local.properties
+*-prod.properties
+application-local.properties
+application-production.properties
+backend/main/resources/application-local.properties
+backend/main/resources/application-production.properties
+
+# ============================================
+# IDE SPECIFIC FILES
+# ============================================
+
+# IntelliJ IDEA
 .idea/
 *.iml
 *.iws
+*.ipr
+out/
+.idea_modules/
+
+# Eclipse
 .project
 .classpath
 .settings/
-.vscode/
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
 *.swp
-*.swo
-*~
+*~.nib
+local.properties
+.loadpath
+.recommenders
 
-# OS Files
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist-netbeans/
+nbdist/
+.nb-gradle/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ============================================
+# OPERATING SYSTEM FILES
+# ============================================
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
 
-# Application Properties (contains sensitive data)
-application-prod.properties
-application-local.properties
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
 
-# Environment files (CONTAINS SENSITIVE DATA - NEVER COMMIT!)
-.env
-.env.local
-.env.production
-.env.development
-frontend/.env
-frontend/.env.local
-frontend/.env.production
-frontend/.env.development
+# ============================================
+# LOGS AND DATABASES
+# ============================================
 
-# Database
+# Log files
+*.log
+logs/
+*.log.*
+backend.log
+frontend.log
+server_startup.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+
+# Database files
 *.db
 *.sqlite
+*.sqlite3
+data/
+*.h2.db
 
-# Temp files
+# ============================================
+# BUILD ARTIFACTS
+# ============================================
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Build directories
+build/
+target/
+.gradle/
+gradle/
+
+# ============================================
+# UPLOADS AND STORAGE
+# ============================================
+
+# User uploaded files
+uploads/
+storage/
+static/uploads/
+public/uploads/
+files/
 temp/
 tmp/
 
-# Build artifacts
-dist/
-build/
-frontend/build/
+# ============================================
+# TESTING
+# ============================================
 
 # Test coverage
 coverage/
+*.lcov
 .nyc_output/
+test-results/
+junit.xml
 
-# Node modules (if frontend added)
-node_modules/
-frontend/node_modules/
-npm-debug.log
-package-lock.json
-frontend/package-lock.json
+# E2E testing
+cypress/videos/
+cypress/screenshots/
+playwright-report/
 
-# Application specific
-uploads/
-storage/
+# ============================================
+# DOCUMENTATION (TEMPORARY)
+# ============================================
 
-# Temporary documentation files
-*_FIX_*.md
-*_SUMMARY.md
-*_IMPLEMENTATION.md
-*_GUIDE.md
-*_FIXES*.md
-*_FEATURES*.md
-ADMIN_*.md
-COMPLETE_*.md
-COMPREHENSIVE_*.md
-ENHANCED_*.md
-ERROR_*.md
-GEOLOCATION_*.md
-MAP_*.md
-MASSIVE_*.md
-PAGES_*.md
-TESTING_*.md
-VULNERABILITY_*.md
+# Temporary or auto-generated docs
+*_BACKUP.md
+*_OLD.md
+*_TEMP.md
+TODO_*.md
+NOTES_*.md
 
-# Debug and test scripts
-debug-*.sh
-verify-*.sh
-cleanup-*.sh
-test-*.sh
+# Keep these important docs
+!README.md
+!REDESIGN_SUMMARY.md
+!QUICK_START.md
+!INSTALLATION_GUIDE.md
+!BEFORE_AFTER_COMPARISON.md
+!CONTRIBUTING.md
+!CHANGELOG.md
+!LICENSE.md
+
+# ============================================
+# DEPENDENCIES AND CACHES
+# ============================================
+
+# Dependency directories
+jspm_packages/
+bower_components/
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js
+.next/
+next-env.d.ts
+
+# Nuxt.js
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
+
+# SvelteKit
+.svelte-kit/
+
+# ============================================
+# SECURITY AND SECRETS
+# ============================================
+
+# API Keys and Secrets (NEVER COMMIT!)
+**/secrets/
+**/private/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+service-account.json
+firebase-adminsdk.json
+
+# JWT secrets
+jwt-secret.txt
+*.secret
+
+# ============================================
+# MISC
+# ============================================
+
+# Backup files
+*.backup
+*.bak
+*_backup
+*_old
+
+# Archive files
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Lock files (optional)
+# Uncomment if you want to ignore lock files
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+
+# Frontend backup directory
+frontend-backup/
+
+# Server logs
+server_startup.log
+
+# ============================================
+# KEEP THESE (EXCEPTIONS)
+# ============================================
+
+# Keep example environment files
+!.env.example
+!frontend/.env.example
+
+# Keep important documentation
+!README.md
+!LICENSE
+!CONTRIBUTING.md
+!CODE_OF_CONDUCT.md
+
+# Keep GitHub workflows
+!.github/
+!.github/**
+
+# Keep Docker files
+!Dockerfile
+!docker-compose.yml
+!.dockerignore
+
+# ============================================
+# END OF .gitignore
+# ============================================
