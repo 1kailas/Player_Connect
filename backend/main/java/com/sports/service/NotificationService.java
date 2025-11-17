@@ -1,62 +1,67 @@
 package com.sports.service;
 
-
 import com.sports.model.entity.Event;
 import com.sports.model.entity.Notification;
 import com.sports.model.entity.User;
 import com.sports.repository.NotificationRepository;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 /**
  * Notification Service
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NotificationService {
-    
+
     private final NotificationRepository notificationRepository;
-    
+
     @Transactional
-    public Notification createNotification(User user, String title, String message, String type) {
+    public Notification createNotification(
+        User user,
+        String title,
+        String message,
+        String type
+    ) {
         Notification notification = Notification.builder()
-                .userId(user.getId())
-                .title(title)
-                .message(message)
-                .notificationType(type)
-                .isRead(false)
-                .build();
-        
+            .userId(user.getId())
+            .title(title)
+            .message(message)
+            .notificationType(type)
+            .isRead(false)
+            .build();
+
         return notificationRepository.save(notification);
     }
-    
+
     public void notifyEventCreated(Event event) {
         // Implementation for broadcasting event creation
         // Can be enhanced with WebSocket for real-time notifications
     }
-    
+
     public void notifyEventUpdated(Event event) {
         // Notify participants about event update
         // Note: Would need UserRepository to fetch User objects from participantIds
         // Simplified for now
     }
-    
+
     public void notifyRegistrationOpened(Event event) {
         // Notify interested users about registration opening
     }
-    
+
     public void notifyEventStarted(Event event) {
         // Notify participants about event start
         // Note: Would need UserRepository to fetch User objects from participantIds
         // Simplified for now
     }
-    
+
     public void notifyUserRegistered(Event event, User user) {
         createNotification(
             user,
@@ -65,46 +70,51 @@ public class NotificationService {
             "REGISTRATION_SUCCESS"
         );
     }
-    
-    public Page<Notification> getUserNotifications(String userId, Pageable pageable) {
+
+    public Page<Notification> getUserNotifications(
+        String userId,
+        Pageable pageable
+    ) {
         return notificationRepository.findByUserId(userId, pageable);
     }
-    
+
     public List<Notification> getUnreadNotifications(String userId) {
         return notificationRepository.findByUserIdAndIsRead(userId, false);
     }
-    
+
     public long getUnreadCount(String userId) {
         return notificationRepository.countByUserIdAndIsReadFalse(userId);
     }
-    
+
     @Transactional
     public void markAsRead(String notificationId) {
-        Notification notification = notificationRepository.findById(notificationId)
-                .orElseThrow(() -> new RuntimeException("Notification not found"));
-        
+        Notification notification = notificationRepository
+            .findById(notificationId)
+            .orElseThrow(() -> new RuntimeException("Notification not found"));
+
         notification.setIsRead(true);
         notification.setReadAt(LocalDateTime.now());
         notificationRepository.save(notification);
     }
-    
+
     @Transactional
     public void markAllAsRead(String userId) {
-        List<Notification> notifications = notificationRepository.findByUserIdAndIsRead(userId, false);
+        List<Notification> notifications =
+            notificationRepository.findByUserIdAndIsRead(userId, false);
         notifications.forEach(n -> {
             n.setIsRead(true);
             n.setReadAt(LocalDateTime.now());
         });
         notificationRepository.saveAll(notifications);
     }
-    
+
     @Transactional
     public void deleteNotification(String notificationId) {
         notificationRepository.deleteById(notificationId);
     }
-    
+
     // ==================== Admin Notifications ====================
-    
+
     public void notifyRoleChange(User user, List<?> roles) {
         createNotification(
             user,
@@ -113,7 +123,7 @@ public class NotificationService {
             "ROLE_UPDATE"
         );
     }
-    
+
     public void notifyUserBanned(User user) {
         createNotification(
             user,
@@ -122,7 +132,7 @@ public class NotificationService {
             "ACCOUNT_BANNED"
         );
     }
-    
+
     public void notifyUserUnbanned(User user) {
         createNotification(
             user,
@@ -131,7 +141,7 @@ public class NotificationService {
             "ACCOUNT_RESTORED"
         );
     }
-    
+
     public void notifyUserDeleted(User user) {
         createNotification(
             user,
@@ -140,49 +150,69 @@ public class NotificationService {
             "ACCOUNT_DELETED"
         );
     }
-    
+
     // ============= NEW: Certificate Notifications =============
-    
-    public void notifyCertificateUploaded(User user, com.sports.model.entity.Certificate certificate) {
+
+    public void notifyCertificateUploaded(
+        User user,
+        com.sports.model.entity.Certificate certificate
+    ) {
         createNotification(
             user,
             "Certificate Uploaded",
-            "Your certificate '" + certificate.getTitle() + "' has been uploaded successfully and is pending verification.",
+            "Your certificate '" +
+                certificate.getTitle() +
+                "' has been uploaded successfully and is pending verification.",
             "CERTIFICATE_UPLOADED"
         );
     }
-    
-    public void notifyCertificateVerified(User user, com.sports.model.entity.Certificate certificate) {
+
+    public void notifyCertificateVerified(
+        User user,
+        com.sports.model.entity.Certificate certificate
+    ) {
         createNotification(
             user,
             "Certificate Verified",
-            "Your certificate '" + certificate.getTitle() + "' has been verified by an administrator.",
+            "Your certificate '" +
+                certificate.getTitle() +
+                "' has been verified by an administrator.",
             "CERTIFICATE_VERIFIED"
         );
     }
-    
-    public void notifyCertificateRejected(User user, com.sports.model.entity.Certificate certificate, String reason) {
+
+    public void notifyCertificateRejected(
+        User user,
+        com.sports.model.entity.Certificate certificate,
+        String reason
+    ) {
         createNotification(
             user,
             "Certificate Rejected",
-            "Your certificate '" + certificate.getTitle() + "' was not verified. Reason: " + reason,
+            "Your certificate '" +
+                certificate.getTitle() +
+                "' was not verified. Reason: " +
+                reason,
             "CERTIFICATE_REJECTED"
         );
     }
-    
+
     // ============= NEW: Team Notifications =============
-    
+
     public void notifyTeamCreated(com.sports.model.entity.Team team) {
         // Would notify all team members - simplified for now
-        System.out.println("Team created: " + team.getName());
+        log.info("Team created: {}", team.getName());
     }
-    
+
     public void notifyTeamVerified(com.sports.model.entity.Team team) {
         // Would notify all team members - simplified for now
-        System.out.println("Team verified: " + team.getName());
+        log.info("Team verified: {}", team.getName());
     }
-    
-    public void notifyAddedToTeam(User user, com.sports.model.entity.Team team) {
+
+    public void notifyAddedToTeam(
+        User user,
+        com.sports.model.entity.Team team
+    ) {
         createNotification(
             user,
             "Added to Team",
